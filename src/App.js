@@ -1,24 +1,23 @@
 import React from 'react';
-import logo from './logo.svg';
 import './App.css';
+import TodoHeader from "./components/TodoHeader/TodoHeader";
+import TasksControlPanel from "./components/TasksControlPanel/TasksControlPanel";
+import NewTaskPanel from "./components/NewTaskPanel/NewTaskPanel";
+import TaskList from "./components/TasksList/TaskList";
 
 function App() {
+    const tasks = [
+        {id: 1, text: 'Learn React', isDone: true },
+        {id: 2, text: 'Complete Todo list', isDone: false },
+        {id: 3, text: 'Work with joy', isDone: true },
+        {id: 4, text: 'Go to bed', isDone: false }
+    ];
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+            <TodoHeader title='ToDo list'/>
+            <NewTaskPanel/>
+            <TasksControlPanel/>
+            <TaskList tasks={tasks}/>
     </div>
   );
 }

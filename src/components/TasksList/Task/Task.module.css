@@ -1,0 +1,14 @@
+.main{
+    box-sizing: border-box;
+    display: flex;
+    align-content: flex-start;
+    align-items: flex-start;
+    margin: 5px;
+}
+.text{
+    width: 100%;
+    text-align: left;
+    padding-left: 10px;
+    height: 2.5rem;
+    line-height: 2.5rem;
+}
