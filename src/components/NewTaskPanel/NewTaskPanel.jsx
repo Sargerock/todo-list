@@ -9,7 +9,9 @@ const NewTaskPanel = ({createNewTask}) => {
     const [newTaskText, setNewTaskText] = useState("");
 
     const onTextChange = ({target: {value}}) => {
-        setNewTaskText(value);
+        if(value.length < 130){
+            setNewTaskText(value);
+        }
     };
     const onCreateTaskClick = () => {
         if(newTaskText && newTaskText.length > 2){

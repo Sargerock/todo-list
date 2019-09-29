@@ -1,8 +1,16 @@
 .App {
   text-align: center;
   width: 70vw;
+  min-width: 300px;
   background-color: white;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
   margin-top: 5vh;
   padding: 10px;
+}
+
+@media screen and (max-width: 760px) {
+  .App {
+    width: 100vw;
+    box-shadow: none;
+  }
 }

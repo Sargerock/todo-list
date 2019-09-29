@@ -4,14 +4,22 @@ import Button from "../common/Button/Button";
 import style from './TaskControlPanel.module.css';
 import {colors} from "../../constants";
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
-import {faTrash, faEraser} from '@fortawesome/free-solid-svg-icons';
+import {faTrash, faEraser, faList, faCheckCircle, faCircle} from '@fortawesome/free-solid-svg-icons';
+import useWindowSize from '../../utils/useWindowSize';
 
 const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, deleteAllCompletedTasks, setFilter}) => {
     const {green, red, fontDark} = colors;
-
+    let size = useWindowSize().width;
+    const filterIcons = {
+        [filters.ALL]: faList,
+        [filters.COMPLETED]: faCheckCircle,
+        [filters.UNCOMPLETED]: faCircle
+    };
+    
+    const isWidthEnought = () => size > 1100;
     const onDeleteAllClick = () => deleteAllTasks();
     const onDeleteAllCompletedClick = () => deleteAllCompletedTasks();
-    const onSetFilterClick = ({target: {innerHTML}}) => setFilter(innerHTML);
+    const onSetFilterClick = ({target: {value}}) => setFilter(value);
 
     const buttons = Object.values(filters).map(text => {
        return <Button
@@ -22,7 +30,7 @@ const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, 
            onClick={onSetFilterClick}
            value={text}
        >
-           {text}
+           {isWidthEnought() ? text : <FontAwesomeIcon icon={filterIcons[text]} />}
        </Button>
     });
 
@@ -35,7 +43,7 @@ const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, 
                     onClick={onDeleteAllCompletedClick}
                 >
                     <FontAwesomeIcon className='mlr' icon={faEraser}/>
-                    Clear completed
+                    {isWidthEnought() ? 'Clear completed' : ''}
                 </Button>
                 <Button
                     backgroundColor={red}
@@ -43,9 +51,10 @@ const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, 
                     onClick={onDeleteAllClick}
                 >
                     <FontAwesomeIcon className='mlr' icon={faTrash}/>
-                    Clear all
+                    {isWidthEnought() ? 'Clear all' : ''}
+                    
                 </Button>
-                <span>Total tasks: {tasksCount}</span>
+                <span>Total: {tasksCount}</span>
             </span>
             <span>
                 {buttons}

@@ -17,18 +17,19 @@ const TodoApp = props => {
         setFilter,
         toggleTaskStatus
     } = props;
-
+    
     return (
         <div className='App'>
             <TodoHeader title='ToDo list'/>
             <NewTaskPanel createNewTask={createNewTask}/>
             <TasksControlPanel tasksCount={tasksCount}
-                               currentFilter={filter}
-                               filters={filters}
-                               deleteAllTasks={deleteAllTasks}
-                               deleteAllCompletedTasks={deleteAllCompletedTasks}
-                               setFilter={setFilter}
+                currentFilter={filter}
+                filters={filters}
+                deleteAllTasks={deleteAllTasks}
+                deleteAllCompletedTasks={deleteAllCompletedTasks}
+                setFilter={setFilter} 
             />
+            
             <TaskList tasks={tasks} filter={filter} deleteTask={deleteTask} toggleTaskStatus={toggleTaskStatus}/>
         </div>
     )
