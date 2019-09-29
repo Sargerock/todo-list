@@ -1,6 +1,4 @@
 import React, {useState} from 'react';
-import Button from "../common/Button/Button";
-import {colors} from "../../constants";
 import style from './NewTaskPanel.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
@@ -9,7 +7,7 @@ const NewTaskPanel = ({createNewTask}) => {
     const [newTaskText, setNewTaskText] = useState("");
 
     const onTextChange = ({target: {value}}) => {
-        if(value.length < 130){
+        if(value.length < 200){
             setNewTaskText(value);
         }
     };
@@ -28,9 +26,9 @@ const NewTaskPanel = ({createNewTask}) => {
                    value={newTaskText}
                    onChange={onTextChange}
             />
-            <Button onClick={onCreateTaskClick} backgroundColor={colors.blue}>
+            <button onClick={onCreateTaskClick} className='todoBtn blue'>
                 <FontAwesomeIcon icon={faPlus}/>
-            </Button>
+            </button>
         </div>
     )
 };

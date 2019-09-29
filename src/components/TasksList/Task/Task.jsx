@@ -1,10 +1,9 @@
 import React from 'react';
-import Button from "../../common/Button/Button";
 import {colors} from "../../../constants";
 import PropTypes from 'prop-types';
 import style from './Task.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
-import {faTimes} from "@fortawesome/free-solid-svg-icons";
+import {faTimes, faEdit} from "@fortawesome/free-solid-svg-icons";
 
 const Task = ({task: {id, text, isDone}, deleteTask, toggleTaskStatus}) => {
     const {lightGreen, lightRed} = colors;
@@ -19,9 +18,14 @@ const Task = ({task: {id, text, isDone}, deleteTask, toggleTaskStatus}) => {
     return (
         <div className={style.main}>
             <span style={inlineStyle} className={style.text} onClick={onToggleStatusClick}>{text}</span>
-            <Button backgroundColor={colors.red} onClick={onDeleteClick}>
-                <FontAwesomeIcon icon={faTimes}/>
-            </Button>
+            <span className={style.minContent}>
+                <button className='todoBtn small lightRed' onClick={onDeleteClick}>
+                    <FontAwesomeIcon icon={faTimes}/>
+                </button>
+                <button className='todoBtn small' onClick={onDeleteClick}>
+                    <FontAwesomeIcon icon={faEdit}/>
+                </button>
+            </span>
         </div>
     )
 };

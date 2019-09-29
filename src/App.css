@@ -8,9 +8,43 @@
   padding: 10px;
 }
 
-@media screen and (max-width: 760px) {
+.todoBtn {
+  box-sizing: border-box;
+  height: 2.5rem;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: #8bc34a;
+  border: 1px solid #8bc34a;
+  min-width: 50px;
+}
+.small {
+  color: white;
+  height: 2.25rem;
+  width: 40px;
+}
+.red {
+  color: white;
+  background-color: #e53935;
+  border: 1px solid #e53935;
+}
+.lightRed {
+  color: white;
+  background-color: #ff7673;
+  border: 1px solid #ff7673;
+}
+.blue {
+  color: white;
+  background-color: #039be5;
+  border: 1px solid #039be5;
+}
+.simple{
+  background-color: transparent;
+}
+
+@media screen and (max-width: 1366px) {
   .App {
-    width: 100vw;
+    width: 90vw;
     box-shadow: none;
+    font-size: 0.9rem;
   }
 }
