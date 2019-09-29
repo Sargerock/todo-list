@@ -6,16 +6,20 @@ import style from './Task.module.css';
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faTimes} from "@fortawesome/free-solid-svg-icons";
 
-const Task = ({text, isDone}) => {
+const Task = ({task: {id, text, isDone}, deleteTask, toggleTaskStatus}) => {
     const {lightGreen, lightRed} = colors;
     const inlineStyle = {
         backgroundColor: isDone ? lightGreen : lightRed,
         textDecoration: isDone ? 'line-through' : 'none'
     };
+
+    const onDeleteClick = () => { deleteTask(id); };
+    const onToggleStatusClick = () => { toggleTaskStatus(id) };
+
     return (
         <div className={style.main}>
-            <span style={inlineStyle} className={style.text}>{text}</span>
-            <Button backgroundColor={colors.red}>
+            <span style={inlineStyle} className={style.text} onClick={onToggleStatusClick}>{text}</span>
+            <Button backgroundColor={colors.red} onClick={onDeleteClick}>
                 <FontAwesomeIcon icon={faTimes}/>
             </Button>
         </div>
@@ -23,7 +27,7 @@ const Task = ({text, isDone}) => {
 };
 
 Task.propTypes = {
-    text: PropTypes.string.isRequired,
+    task: PropTypes.object,
     isDone: PropTypes.bool
 };
 
