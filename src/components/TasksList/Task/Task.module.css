@@ -6,6 +6,7 @@
     margin: 5px;
 }
 .text{
+    box-sizing: border-box;
     width: 100%;
     text-align: left;
     padding-left: 10px;

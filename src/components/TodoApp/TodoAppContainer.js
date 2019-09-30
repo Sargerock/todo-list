@@ -5,6 +5,7 @@ import {
     deleteAllCompletedTasks,
     deleteAllTasks,
     deleteTask,
+    editTaskText,
     setFilter,
     toggleTaskStatus
 } from "../../store/todoReducer";
@@ -21,7 +22,8 @@ const mapDispatchToProps = {
     deleteAllTasks,
     deleteAllCompletedTasks,
     setFilter,
-    toggleTaskStatus
+    toggleTaskStatus,
+    editTaskText
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(TodoApp);

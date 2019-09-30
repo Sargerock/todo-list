@@ -1,11 +1,12 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import style from './TaskControlPanel.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faTrash, faEraser, faList, faCheckCircle, faCircle} from '@fortawesome/free-solid-svg-icons';
 import useWindowSize from '../../utils/useWindowSize';
 
-const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, deleteAllCompletedTasks, setFilter}) => {
+//Содежит элементы управления списком, такие как: фильры, очистка списка от всех/готовых заданий
+//Адаптируется под разрешение экрана
+const TasksControlPanel = ({currentFilter, filters, deleteAllTasks, deleteAllCompletedTasks, setFilter}) => {
     let size = useWindowSize().width;
     const filterIcons = {
         [filters.ALL]: faList,
@@ -29,7 +30,7 @@ const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, 
     });
 
     return (
-        <div className={style.main}>
+        <div className='flexSpaceBetween'>
             <span>
                 <button onClick={onDeleteAllCompletedClick} className='todoBtn'>
                     <FontAwesomeIcon className='mlr' icon={faEraser}/>
@@ -39,7 +40,6 @@ const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, 
                     <FontAwesomeIcon className='mlr' icon={faTrash}/>
                     {isWidthEnough() ? 'Clear all' : ''}
                 </button>
-                <span>Total: {tasksCount}</span>
             </span>
             <span>
                 {buttons}
@@ -49,11 +49,15 @@ const TasksControlPanel = ({tasksCount, currentFilter, filters, deleteAllTasks, 
 };
 
 TasksControlPanel.propTypes = {
-    tasksCount: PropTypes.number
+    currentFilter: PropTypes.string,
+    filters: PropTypes.objectOf(PropTypes.string).isRequired,
+    deleteAllTasks: PropTypes.func.isRequired,
+    deleteAllCompletedTasks: PropTypes.func.isRequired,
+    setFilter: PropTypes.func.isRequired
 };
 
 TasksControlPanel.defaultProps = {
-    tasksCount: 0
+    currentFilter: 'All'
 };
 
 export default TasksControlPanel;

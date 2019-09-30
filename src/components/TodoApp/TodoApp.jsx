@@ -1,10 +1,12 @@
 import React from 'react';
-import TodoHeader from "../TodoHeader/TodoHeader";
-import NewTaskPanel from "../NewTaskPanel/NewTaskPanel";
-import TasksControlPanel from "../TasksControlPanel/TasksControlPanel";
-import TaskList from "../TasksList/TaskList";
-import {filters} from "../../constants";
+import TodoHeader from '../TodoHeader/TodoHeader';
+import NewTaskPanel from '../NewTaskPanel/NewTaskPanel';
+import TasksControlPanel from '../TasksControlPanel/TasksControlPanel';
+import TaskList from '../TasksList/TaskList';
+import {filters} from '../../constants';
+import TodoFooter from '../TodoFooter/TodoFooter';
 
+//Рендерит структуру приложения и распределяет пропсы
 const TodoApp = props => {
     const {
         tasks,
@@ -15,22 +17,28 @@ const TodoApp = props => {
         deleteAllTasks,
         deleteAllCompletedTasks,
         setFilter,
-        toggleTaskStatus
+        toggleTaskStatus,
+        editTaskText
     } = props;
     
     return (
         <div className='App'>
             <TodoHeader title='ToDo list'/>
             <NewTaskPanel createNewTask={createNewTask}/>
-            <TasksControlPanel tasksCount={tasksCount}
-                currentFilter={filter}
+            <TasksControlPanel currentFilter={filter}
                 filters={filters}
                 deleteAllTasks={deleteAllTasks}
                 deleteAllCompletedTasks={deleteAllCompletedTasks}
                 setFilter={setFilter} 
             />
             
-            <TaskList tasks={tasks} filter={filter} deleteTask={deleteTask} toggleTaskStatus={toggleTaskStatus}/>
+            <TaskList tasks={tasks}
+                      filter={filter}
+                      deleteTask={deleteTask}
+                      toggleTaskStatus={toggleTaskStatus}
+                      editTaskText={editTaskText}
+            />
+            <TodoFooter tasksCount={tasksCount}/>
         </div>
     )
 };

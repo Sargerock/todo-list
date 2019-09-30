@@ -8,6 +8,13 @@
   padding: 10px;
 }
 
+.flexSpaceBetween{
+  display: flex;
+  justify-content: space-between;
+  padding: 5px;
+  align-items: baseline;
+}
+
 .todoBtn {
   box-sizing: border-box;
   height: 2.5rem;

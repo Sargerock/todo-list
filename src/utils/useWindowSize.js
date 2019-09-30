@@ -1,5 +1,6 @@
 import {useState, useEffect} from 'react';
 
+//Позволяет реагироват на изменения ширины/высоты окна
 export default () => {
     const isClient = typeof window === 'object';
   
@@ -23,7 +24,7 @@ export default () => {
   
       window.addEventListener('resize', handleResize);
       return () => window.removeEventListener('resize', handleResize);
-    }, []); // Empty array ensures that effect is only run on mount and unmount
+    });
   
     return windowSize;
   }

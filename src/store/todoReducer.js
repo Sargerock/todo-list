@@ -3,20 +3,18 @@ import {
     TODO_CREATE_TASK,
     TODO_DELETE_ALL_COMPLETED_TASK,
     TODO_DELETE_ALL_TASK,
-    TODO_DELETE_TASK, TODO_SET_FILTER,
+    TODO_DELETE_TASK, TODO_EDIT_TASK,
+    TODO_SET_FILTER,
     TODO_TOGGLE_TASK_STATUS
 } from "../constants";
+import { load } from 'redux-localstorage-simple';
 
-const initState = {
-    tasks: [
-        {id: 1, text: 'Learn React', isDone: true },
-        {id: 2, text: 'Complete Todo list', isDone: false },
-        {id: 3, text: 'Work with joy', isDone: true },
-        {id: 4, text: 'Go to bed', isDone: false }
-    ],
-    tasksCount: 4,
-    filter: filters.ALL
-};
+let initState = load({namespace: 'todo-list'});
+
+//инициализация в случае, если в localStorage ничего нет
+if(!initState || !initState.tasks || !initState.tasks.length){
+    initState = { tasks: [], tasksCount: 0, filter: filters.ALL};
+}
 
 export const todoReducer = (state = initState, action) => {
     switch (action.type) {
@@ -65,6 +63,16 @@ export const todoReducer = (state = initState, action) => {
                     return task;
                 })]
             };
+        case TODO_EDIT_TASK:
+            return {
+              ...state,
+                tasks: [...state.tasks.map(task => {
+                    if(task.id === action.id){
+                        return {...task, text: action.text}
+                    }
+                    return task;
+                })]
+            };
         default:
             return state;
     }
@@ -76,3 +84,4 @@ export const deleteAllTasks = () => ({type: TODO_DELETE_ALL_TASK});
 export const deleteAllCompletedTasks = () => ({type: TODO_DELETE_ALL_COMPLETED_TASK});
 export const setFilter = filter => ({type: TODO_SET_FILTER, filter});
 export const toggleTaskStatus = id => ({type: TODO_TOGGLE_TASK_STATUS, id});
+export const editTaskText = (id, text) => ({type: TODO_EDIT_TASK, id, text});

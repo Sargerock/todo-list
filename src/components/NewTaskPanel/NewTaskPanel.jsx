@@ -2,7 +2,9 @@ import React, {useState} from 'react';
 import style from './NewTaskPanel.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
+import PropTypes from 'prop-types';
 
+//Служит для создания нового задания в списке
 const NewTaskPanel = ({createNewTask}) => {
     const [newTaskText, setNewTaskText] = useState("");
 
@@ -31,6 +33,10 @@ const NewTaskPanel = ({createNewTask}) => {
             </button>
         </div>
     )
+};
+
+NewTaskPanel.propTypes = {
+    createNewTask: PropTypes.func.isRequired
 };
 
 export default NewTaskPanel;
