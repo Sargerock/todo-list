@@ -5,7 +5,6 @@ import {faTrash, faEraser, faList, faCheckCircle, faCircle} from '@fortawesome/f
 import useWindowSize from '../../utils/useWindowSize';
 
 //Содежит элементы управления списком, такие как: фильры, очистка списка от всех/готовых заданий
-//Адаптируется под разрешение экрана
 const TasksControlPanel = ({currentFilter, filters, deleteAllTasks, deleteAllCompletedTasks, setFilter}) => {
     let size = useWindowSize().width;
     const filterIcons = {

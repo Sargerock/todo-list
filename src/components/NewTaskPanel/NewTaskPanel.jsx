@@ -1,8 +1,9 @@
 import React, {useState} from 'react';
+import PropTypes from 'prop-types';
+
 import style from './NewTaskPanel.module.css';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome';
 import {faPlus} from '@fortawesome/free-solid-svg-icons';
-import PropTypes from 'prop-types';
 
 //Служит для создания нового задания в списке
 const NewTaskPanel = ({createNewTask}) => {
@@ -20,6 +21,10 @@ const NewTaskPanel = ({createNewTask}) => {
         }
     };
 
+    const onKeyDown = (e) => {
+      if(e.key === 'Enter') onCreateTaskClick();
+    };
+
     return (
         <div className={style.main}>
             <input type="text"
@@ -27,6 +32,7 @@ const NewTaskPanel = ({createNewTask}) => {
                    placeholder='New task description...'
                    value={newTaskText}
                    onChange={onTextChange}
+                   onKeyDown={onKeyDown}
             />
             <button onClick={onCreateTaskClick} className='todoBtn blue'>
                 <FontAwesomeIcon icon={faPlus}/>

@@ -8,7 +8,9 @@
 .text{
     box-sizing: border-box;
     width: 100%;
-    text-align: left;
+    display: flex;
+    justify-content: left;
+    align-items: center;
     padding-left: 10px;
     padding-right: 10px;
     height: 4.5rem;
